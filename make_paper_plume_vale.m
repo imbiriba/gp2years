@@ -78,7 +78,7 @@ if(part2)
     error('Wrong htype')
   end
 
-  sest={'verao','inver'};
+  sest={'inver','verao'};
   sdia={'1','2','3','4'};
 
   for ist=1:2
@@ -110,9 +110,10 @@ if(part2)
       % 5    6    7        17   18   19
       sunset = hour(isel)==6 | hour(isel)==17;
 
-      % Replace invalid radiation data with 0
-      rad = vale.Rad(isel)/3.6;
-      rad(isnan(rad)) = 0;
+      % Vale's radiation is in W/m², so no conversion is needed. 
+      rad = vale.Rad(isel);
+      % Leave NaN/Inf fields as they are.
+      % rad(isnan(rad)) = 0;
 
 
 
@@ -133,7 +134,7 @@ if(part2)
   end
 end
 
-
+part3=false;
 if(part3)
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % Run Plume model
